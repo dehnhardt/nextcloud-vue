@@ -72,12 +72,12 @@ Wrap the children in a template with the `slot` property and use the prop `allow
 prevent the user from collapsing the items.
 
 ```
-<AppNavigationItem title="Item with children" :allowCollapse="true">
+<AppNavigationItem title="Item with children" :allowCollapse="true" :open="true">
 	<template>
 		<AppNavigationItem title="AppNavigationItemChild1" />
-		<AppNavigationItem title="AppNavigationItemChild2" />
-		<AppNavigationItem title="AppNavigationItemChild3"  />
-		<AppNavigationItem title="AppNavigationItemChild4"  />
+		<AppNavigationItem class="active" title="AppNavigationItemChild2" />
+		<AppNavigationItem title="AppNavigationItemChild3" />
+		<AppNavigationItem title="AppNavigationItemChild4" />
 	</template>
 </AppNavigationItem>
 ```
@@ -442,6 +442,7 @@ export default {
 	min-height: $clickable-area;
 	// When .active class is applied, change color background of link and utils. The
 	// !important prevents the focus state to override the active state.
+	&.active,
 	&.active > a,
 	&.active > a ~ .app-navigation-entry__utils {
 		background-color: var(--color-primary-light) !important;
@@ -454,6 +455,18 @@ export default {
 			// NO ANIMATE because if not really hidden, we can still tab through it
 			display: none;
 		}
+	}
+
+	&:hover .app-navigation-entry__children,
+	&:hover .app-navigation-entry:not(:hover):not(:focus):not(.active) {
+		background-color: var(--color-main-background) !important;
+	}
+
+	&:hover,
+	&:hover > .app-navigation-entry__utils,
+	&:focus,
+	&:focus ~ .app-navigation-entry__utils {
+		background-color: var(--color-background-hover);
 	}
 
 	// Main entry link
