@@ -458,7 +458,9 @@ export default {
 	}
 
 	&:hover .app-navigation-entry__children,
-	&:hover .app-navigation-entry:not(:hover):not(:focus):not(.active) {
+	&.active .app-navigation-entry__children,
+	&:hover .app-navigation-entry:not(:hover):not(:focus):not(.active),
+	&.active .app-navigation-entry:not(:hover):not(:focus):not(.active) {
 		background-color: var(--color-main-background) !important;
 	}
 
