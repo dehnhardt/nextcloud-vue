@@ -440,12 +440,20 @@ export default {
 	box-sizing: border-box;
 	width: 100%;
 	min-height: $clickable-area;
+
 	// When .active class is applied, change color background of link and utils. The
 	// !important prevents the focus state to override the active state.
-	&.active,
-	&.active > a,
-	&.active > a ~ .app-navigation-entry__utils {
+	&.active {
 		background-color: var(--color-primary-light) !important;
+	}
+	&:hover {
+		background-color: var(--color-background-hover);
+	}
+	&.active,
+	&:hover {
+		.app-navigation-entry__children {
+			background-color: var(--color-main-background);
+		}
 	}
 
 	/* hide deletion/collapse of subitems */
@@ -455,20 +463,6 @@ export default {
 			// NO ANIMATE because if not really hidden, we can still tab through it
 			display: none;
 		}
-	}
-
-	&:hover .app-navigation-entry__children,
-	&.active .app-navigation-entry__children,
-	&:hover .app-navigation-entry:not(:hover):not(:focus):not(.active),
-	&.active .app-navigation-entry:not(:hover):not(:focus):not(.active) {
-		background-color: var(--color-main-background) !important;
-	}
-
-	&:hover,
-	&:hover > .app-navigation-entry__utils,
-	&:focus,
-	&:focus ~ .app-navigation-entry__utils {
-		background-color: var(--color-background-hover);
 	}
 
 	// Main entry link
@@ -487,17 +481,6 @@ export default {
 		background-position: $icon-margin center;
 		background-size: $icon-size $icon-size;
 		line-height: $clickable-area;
-		&:hover,
-		&:hover ~ .app-navigation-entry__utils,
-		&:focus,
-		&:focus ~ .app-navigation-entry__utils {
-			background-color: var(--color-background-hover);
-		}
-		&.active,
-		&:active,
-		&:active ~ .app-navigation-entry__utils {
-			background-color: var(--color-primary-light);
-		}
 
 		.app-navigation-entry-icon {
 			display: flex;
